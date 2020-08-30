@@ -33,7 +33,7 @@
           style="width: 100%;"
         >
           <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
-          <el-table-column prop="attrGroupId" header-align="center" align="center" label="分组id"></el-table-column>
+          <el-table-column prop="id" header-align="center" align="center" label="分组id"></el-table-column>
           <el-table-column prop="attrGroupName" header-align="center" align="center" label="组名"></el-table-column>
           <el-table-column prop="sort" header-align="center" align="center" label="排序"></el-table-column>
           <el-table-column prop="description" header-align="center" align="center" label="描述"></el-table-column>

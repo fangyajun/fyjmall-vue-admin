@@ -54,18 +54,18 @@
           ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="可检索" prop="searchType" v-if="type == 1">
+      <el-form-item label="可检索" prop="search" v-if="type == 1">
         <el-switch
-          v-model="dataForm.searchType"
+          v-model="dataForm.search"
           active-color="#13ce66"
           inactive-color="#ff4949"
           :active-value="1"
           :inactive-value="0"
         ></el-switch>
       </el-form-item>
-      <el-form-item label="快速展示" prop="showDesc" v-if="type == 1">
+      <el-form-item label="快速展示" prop="showDescription" v-if="type == 1">
         <el-switch
-          v-model="dataForm.showDesc"
+          v-model="dataForm.showDescription"
           active-color="#13ce66"
           inactive-color="#ff4949"
           :active-value="1"
@@ -96,9 +96,9 @@ export default {
     return {
       visible: false,
       dataForm: {
-        attrId: 0,
+        id: 0,
         attrName: "",
-        searchType: 0,
+        search: 0,
         valueType: 1,
         icon: "",
         valueSelect: "",
@@ -106,7 +106,7 @@ export default {
         enable: 1,
         categoryId: "",
         attrGroupId: "",
-        showDesc: 0
+        showDescription: 0
       },
       catelogPath: [],
       attrGroups: [],
@@ -114,7 +114,7 @@ export default {
         attrName: [
           { required: true, message: "属性名不能为空", trigger: "blur" }
         ],
-        searchType: [
+        search: [
           {
             required: true,
             message: "是否需要检索不能为空",
@@ -152,7 +152,7 @@ export default {
             trigger: "blur"
           }
         ],
-        showDesc: [
+        showDescription: [
           {
             required: true,
             message: "快速展示不能为空",
@@ -200,29 +200,29 @@ export default {
   components: { CategoryCascader },
   methods: {
     init(id) {
-      this.dataForm.attrId = id || 0;
+      this.dataForm.id = id || 0;
       this.dataForm.attrType = this.type;
       this.visible = true;
       this.$nextTick(() => {
         this.$refs["dataForm"].resetFields();
-        if (this.dataForm.attrId) {
+        if (this.dataForm.id) {
           this.$http({
             url: this.$http.adornUrl(
-              `/product/attr/info/${this.dataForm.attrId}`
+              `/product/attr/info/${this.dataForm.id}`
             ),
             method: "get",
             params: this.$http.adornParams()
           }).then(({ data }) => {
             if (data && data.code === 0) {
               this.dataForm.attrName = data.attr.attrName;
-              this.dataForm.searchType = data.attr.searchType;
+              this.dataForm.search = data.attr.search;
               this.dataForm.valueType = data.attr.valueType;
               this.dataForm.icon = data.attr.icon;
               this.dataForm.valueSelect = data.attr.valueSelect.split(";");
               this.dataForm.attrType = data.attr.attrType;
               this.dataForm.enable = data.attr.enable;
               this.dataForm.categoryId = data.attr.categoryId;
-              this.dataForm.showDesc = data.attr.showDesc;
+              this.dataForm.showDescription = data.attr.showDescription;
               //attrGroupId
               //catelogPath
               this.catelogPath = data.attr.catelogPath;
@@ -240,13 +240,13 @@ export default {
         if (valid) {
           this.$http({
             url: this.$http.adornUrl(
-              `/product/attr/${!this.dataForm.attrId ? "save" : "update"}`
+              `/product/attr/${!this.dataForm.id ? "save" : "update"}`
             ),
             method: "post",
             data: this.$http.adornData({
-              attrId: this.dataForm.attrId || undefined,
+              id: this.dataForm.id || undefined,
               attrName: this.dataForm.attrName,
-              searchType: this.dataForm.searchType,
+              search: this.dataForm.search,
               valueType: this.dataForm.valueType,
               icon: this.dataForm.icon,
               valueSelect: this.dataForm.valueSelect.join(";"),
@@ -254,7 +254,7 @@ export default {
               enable: this.dataForm.enable,
               categoryId: this.dataForm.categoryId,
               attrGroupId: this.dataForm.attrGroupId,
-              showDesc: this.dataForm.showDesc
+              showDescription: this.dataForm.showDescription
             })
           }).then(({ data }) => {
             if (data && data.code === 0) {

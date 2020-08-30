@@ -33,17 +33,17 @@
           style="width: 100%;"
         >
           <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
-          <el-table-column prop="attrId" header-align="center" align="center" label="id"></el-table-column>
+          <el-table-column prop="id" header-align="center" align="center" label="id"></el-table-column>
           <el-table-column prop="attrName" header-align="center" align="center" label="属性名"></el-table-column>
           <el-table-column
             v-if="attrtype == 1"
-            prop="searchType"
+            prop="search"
             header-align="center"
             align="center"
             label="可检索"
           >
             <template slot-scope="scope">
-              <i class="el-icon-success" v-if="scope.row.searchType==1"></i>
+              <i class="el-icon-success" v-if="scope.row.search==1"></i>
               <i class="el-icon-error" v-else></i>
             </template>
           </el-table-column>
@@ -78,9 +78,9 @@
             align="center"
             label="所属分组"
           ></el-table-column>
-          <el-table-column v-if="attrtype == 1" prop="showDesc" header-align="center" align="center" label="快速展示">
+          <el-table-column v-if="attrtype == 1" prop="showDescription" header-align="center" align="center" label="快速展示">
             <template slot-scope="scope">
-              <i class="el-icon-success" v-if="scope.row.showDesc==1"></i>
+              <i class="el-icon-success" v-if="scope.row.showDescription==1"></i>
               <i class="el-icon-error" v-else></i>
             </template>
           </el-table-column>
@@ -92,8 +92,8 @@
             label="操作"
           >
             <template slot-scope="scope">
-              <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.attrId)">修改</el-button>
-              <el-button type="text" size="small" @click="deleteHandle(scope.row.attrId)">删除</el-button>
+              <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">修改</el-button>
+              <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -213,7 +213,7 @@ export default {
       var ids = id
         ? [id]
         : this.dataListSelections.map(item => {
-            return item.attrId;
+            return item.id;
           });
       this.$confirm(
         `确定对[id=${ids.join(",")}]进行[${id ? "删除" : "批量删除"}]操作?`,
