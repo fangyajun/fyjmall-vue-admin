@@ -67,7 +67,7 @@ export default {
         description: [
           { required: true, message: "描述不能为空", trigger: "blur" }
         ],
-        icon: [{ required: true, message: "组图标不能为空", trigger: "blur" }],
+        icon: [{ required: false, message: "组图标可以为空", trigger: "blur" }],
         categoryId: [
           { required: true, message: "所属分类id不能为空", trigger: "blur" }
         ]

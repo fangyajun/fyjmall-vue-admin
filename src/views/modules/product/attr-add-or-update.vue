@@ -129,7 +129,7 @@ export default {
           }
         ],
         icon: [
-          { required: true, message: "属性图标不能为空", trigger: "blur" }
+          { required: false, message: "属性图标可以为空", trigger: "blur" }
         ],
         attrType: [
           {
