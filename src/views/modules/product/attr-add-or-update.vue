@@ -48,9 +48,9 @@
         <el-select ref="groupSelect" v-model="dataForm.attrGroupId" placeholder="请选择">
           <el-option
             v-for="item in attrGroups"
-            :key="item.attrGroupId"
+            :key="item.id"
             :label="item.attrGroupName"
-            :value="item.attrGroupId"
+            :value="item.id"
           ></el-option>
         </el-select>
       </el-form-item>
