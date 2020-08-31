@@ -126,7 +126,7 @@ export default {
             ),
             method: "post",
             data: this.$http.adornData({
-              attrGroupId: this.dataForm.attrGroupId || undefined,
+              id: this.dataForm.attrGroupId || undefined,
               attrGroupName: this.dataForm.attrGroupName,
               sort: this.dataForm.sort,
               description: this.dataForm.description,

@@ -19,7 +19,7 @@
             style="width: 100%;"
           >
             <el-table-column type="selection" header-align="center" align="center"></el-table-column>
-            <el-table-column prop="attrId" header-align="center" align="center" label="属性id"></el-table-column>
+            <el-table-column prop="id" header-align="center" align="center" label="属性id"></el-table-column>
             <el-table-column prop="attrName" header-align="center" align="center" label="属性名"></el-table-column>
             <el-table-column prop="icon" header-align="center" align="center" label="属性图标"></el-table-column>
             <el-table-column prop="valueSelect" header-align="center" align="center" label="可选值列表"></el-table-column>
@@ -55,7 +55,7 @@
             border
           >
             <el-table-column type="selection" header-align="center" align="center" width="50"></el-table-column>
-            <el-table-column prop="attrId" label="#"></el-table-column>
+            <el-table-column prop="id" label="属性id"></el-table-column>
             <el-table-column prop="attrName" label="属性名"></el-table-column>
             <el-table-column prop="valueSelect" label="可选值">
               <template slot-scope="scope">
@@ -72,7 +72,7 @@
             </el-table-column>
             <el-table-column fixed="right" header-align="center" align="center" label="操作">
               <template slot-scope="scope">
-                <el-button type="text" size="small" @click="relationRemove(scope.row.attrId)">移除</el-button>
+                <el-button type="text" size="small" @click="relationRemove(scope.row.id)">移除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -128,7 +128,7 @@ export default {
     batchDeleteRelation(val) {
       let postData = [];
       this.dataListSelections.forEach(item => {
-        postData.push({ attrId: item.attrId, attrGroupId: this.attrGroupId });
+        postData.push({ attrId: item.id, attrGroupId: this.attrGroupId });
       });
       this.$http({
         url: this.$http.adornUrl("/product/attrgroup/attr/relation/delete"),
@@ -167,7 +167,7 @@ export default {
       if (this.innerdataListSelections.length > 0) {
         let postData = [];
         this.innerdataListSelections.forEach(item => {
-          postData.push({ attrId: item.attrId, attrGroupId: this.attrGroupId });
+          postData.push({ attrId: item.id, attrGroupId: this.attrGroupId });
         });
         this.$http({
           url: this.$http.adornUrl("/product/attrgroup/attr/relation"),
