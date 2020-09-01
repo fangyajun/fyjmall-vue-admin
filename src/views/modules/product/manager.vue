@@ -9,8 +9,8 @@
           <brand-select style="width:160px"></brand-select>
         </el-form-item>
         <el-form-item label="价格">
-          <el-input-number style="width:160px" v-model="dataForm.price.min" :min="0"></el-input-number>-
-          <el-input-number style="width:160px" v-model="dataForm.price.max" :min="0"></el-input-number>
+          <el-input-number style="width:160px" v-model="dataForm.salePrice.min" :min="0"></el-input-number>-
+          <el-input-number style="width:160px" v-model="dataForm.salePrice.max" :min="0"></el-input-number>
         </el-form-item>
         <el-form-item label="检索">
           <el-input style="width:160px" v-model="dataForm.key" clearable></el-input>
@@ -52,7 +52,7 @@
           <img :src="scope.row.skuDefaultImg" style="width:80px;height:80px;" />
         </template>
       </el-table-column>
-      <el-table-column prop="price" header-align="center" align="center" label="价格"></el-table-column>
+      <el-table-column prop="salePrice" header-align="center" align="center" label="价格"></el-table-column>
       <el-table-column prop="saleCount" header-align="center" align="center" label="销量"></el-table-column>
       <el-table-column fixed="right" header-align="center" align="center" width="150" label="操作">
         <template slot-scope="scope">
@@ -102,7 +102,7 @@ export default {
         key: "",
         brandId: 0,
         categoryId: 0,
-        price: {
+        salePrice: {
           min: 0,
           max: 0
         }
@@ -151,8 +151,8 @@ export default {
           key: this.dataForm.key,
           categoryId: this.dataForm.categoryId,
           brandId: this.dataForm.brandId,
-          min: this.dataForm.price.min,
-          max: this.dataForm.price.max
+          min: this.dataForm.salePrice.min,
+          max: this.dataForm.salePrice.max
         })
       }).then(({ data }) => {
         if (data && data.code === 0) {
